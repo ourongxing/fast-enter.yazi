@@ -35,7 +35,7 @@ end
 local function extract(archive)
 	local filename = archive:match("(.*)%.([^%.]+)$")
 	local _archive = "'" .. archive .. "'"
-	os.execute("unar -f " .. _archive .. ">/dev/null 2>&1")
+	os.execute("unar -f -d " .. _archive .. ">/dev/null 2>&1")
 	return filename
 end
 
