@@ -41,13 +41,16 @@ local function extract(archive)
 end
 
 local function is_archive(mime)
-	local patterns = { "zip", "tar", "7z", "rar" }
-	local disallowed = { "epub" }
-	for _, pattern in ipairs(disallowed) do
-		if mime:match(pattern) then
-			return false
-		end
-	end
+	local patterns = {
+		"application/zip",
+		"application/gzip",
+		"application/x-tar",
+		"application/x-bzip",
+		"application/x-bzip2",
+		"application/x-7z-compressed",
+		"application/x-rar",
+		"application/x-xz",
+	}
 	for _, pattern in ipairs(patterns) do
 		if mime:match(pattern) then
 			return true
