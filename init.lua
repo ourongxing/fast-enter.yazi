@@ -1,5 +1,5 @@
 local function is_folder_only(path)
-	local p = io.popen("ls -l " .. "'" .. path .. "'", "r")
+	local p = io.popen("ls -l " .. ya.quote(path), "r")
 	if p == nil then
 		return false
 	end
@@ -19,7 +19,7 @@ local function get_innermost_directory(path)
 	local innermost = path
 	local flag = is_folder_only(innermost)
 	if flag then
-		local dirs = io.popen("ls " .. "'" .. path .. "'", "r")
+		local dirs = io.popen("ls " .. ya.quote(path), "r")
 		if dirs == nil then
 			return innermost
 		end
@@ -34,8 +34,7 @@ end
 
 local function extract(archive)
 	local filename = archive:match("(.*)%.([^%.]+)$")
-	local _archive = "'" .. archive .. "'"
-	os.execute("unar -f -d " .. _archive .. ">/dev/null 2>&1")
+	os.execute("unar -f -d " .. ya.quote(archive) .. ">/dev/null 2>&1")
 	return filename
 end
 
