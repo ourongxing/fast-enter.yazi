@@ -34,14 +34,22 @@ end
 
 local function extract(archive)
 	local filename = archive:match("(.*)%.([^%.]+)$")
-	os.execute("unar -f -d " .. ya.quote(archive) .. ">/dev/null 2>&1")
+	-- Always overwrite files when a file to be unpacked already exists on disk
+	-- Always create a containing directory
+	os.execute("unar -f -d " .. ya.quote(archive) .. " >/dev/null 2>&1")
 	return filename
 end
 
 local function is_archive(mime)
 	local patterns = { "zip", "tar", "7z", "rar" }
+	local disallowed = { "epub" }
+	for _, pattern in ipairs(disallowed) do
+		if mime:match(pattern) then
+			return false
+		end
+	end
 	for _, pattern in ipairs(patterns) do
-		if string.match(mime, pattern) then
+		if mime:match(pattern) then
 			return true
 		end
 	end
@@ -51,14 +59,16 @@ end
 return {
 	entry = function()
 		local h = cx.active.current.hovered
+		if h == nil then
+			return
+		end
 		if h.cha.is_dir then
-			local url = tostring(h.url)
-			local innermost = get_innermost_directory(url)
+			local innermost = get_innermost_directory(tostring(h.url))
 			ya.manager_emit("cd", { innermost })
 		elseif is_archive(h:mime()) then
-			local url = tostring(h.url)
-			local path = extract(url)
-			ya.manager_emit("cd", { path })
+			local path = extract(tostring(h.url))
+			local innermost = get_innermost_directory(path)
+			ya.manager_emit("cd", { innermost })
 		else
 			ya.manager_emit("open", { hovered = true })
 		end
