@@ -5,7 +5,8 @@
 Plugin for [Yazi](https://github.com/sxyazi/yazi) to enter the subfolder faster, or open the file directly.
 
 With more features:
-- Auto decompress archives and enter it. 
+
+- Auto decompress archives and enter it.
 - Go directly to the innermost folder, if there is always only one subfolder
 
 To install, clone the repo inside your `~/.config/yazi/plugins/`:
@@ -15,8 +16,9 @@ git clone https://github.com/ourongxing/fast-enter.yazi.git
 ```
 
 Or do this, if you have installed yazi v0.3
+
 ```shell
-ya pack -a ourongxing/fast-enter.yazi
+ya pack -a ourongxing/fast-enter
 ```
 
 Then bind it for `l` key, in your `keymap.toml`:
