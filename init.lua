@@ -1,3 +1,5 @@
+--- @sync entry
+
 local function is_folder_only(path)
 	local p = io.popen("ls -l " .. ya.quote(path), "r")
 	if p == nil then
