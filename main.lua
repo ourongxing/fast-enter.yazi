@@ -69,13 +69,13 @@ return {
 		end
 		if h.cha.is_dir then
 			local innermost = get_innermost_directory(tostring(h.url))
-			ya.manager_emit("cd", { innermost })
+			ya.emit("cd", { innermost })
 		elseif is_archive(h:mime()) then
 			local path = extract(tostring(h.url))
 			local innermost = get_innermost_directory(path)
-			ya.manager_emit("cd", { innermost })
+			ya.emit("cd", { innermost })
 		else
-			ya.manager_emit("open", { hovered = true })
+			ya.emit("open", { hovered = true })
 		end
 	end,
 }
