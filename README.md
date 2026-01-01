@@ -24,7 +24,7 @@ ya pack -a ourongxing/fast-enter
 Then bind it for `l` key, in your `keymap.toml`:
 
 ```toml
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on   = [ "l" ]
 run  = "plugin fast-enter"
 desc = "Enter the subfolder faster, or open the file directly"
