@@ -9,16 +9,10 @@ With more features:
 - Auto decompress archives and enter it.
 - Go directly to the innermost folder, if there is always only one subfolder
 
-To install, clone the repo inside your `~/.config/yazi/plugins/`:
-
-```bash
-git clone https://github.com/ourongxing/fast-enter.yazi.git
-```
-
-Or do this, if you have installed yazi v0.3
+Install Command
 
 ```shell
-ya pack -a ourongxing/fast-enter
+ya pkg add ourongxing/fast-enter
 ```
 
 Then bind it for `l` key, in your `keymap.toml`:
